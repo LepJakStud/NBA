@@ -40,6 +40,8 @@
             </Border>
         </StackPanel>
         <Label Width="auto" x:Name="Blue" Height="23" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" Foreground="White" FontSize="12"/>
-
+        <StackPanel>
+            <TextBlock Text=" НАДЕЮСЬ ЭТОГО ХВАТИТ"></TextBlock>
+        </StackPanel>
     </Grid>
 </Page>
