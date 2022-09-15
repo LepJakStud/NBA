@@ -1,0 +1,58 @@
+﻿<Page x:Class="NBA.Pages.TeamReport"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NBA.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="1000"
+      Title="TeamReport">
+
+    <Grid Background="White">
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <Label Content="Matchup Type:" FontSize="12" VerticalAlignment="Center" Margin="20,0,0,0"/>
+            <ComboBox x:Name="comboType" FontSize="12" Height="20" Width="120"/>
+            <Label Content="Rank by:" FontSize="12" VerticalAlignment="Center" Margin="10,0,0,0"/>
+            <ComboBox x:Name="comboRank" FontSize="12" Height="20" Width="120"/>
+            <Label Content="View by:" FontSize="12" VerticalAlignment="Center"/>
+            <ComboBox x:Name="comboView" FontSize="12" Height="20" Width="120"/>
+            <Button Content="Search" x:Name="Search" Click="Search_Click" Style="{StaticResource RoundButton}"  Width="50" Height="20" FontSize="12" VerticalAlignment="Center"/>
+        </StackPanel>
+        <Border BorderBrush="Gray" BorderThickness="0.5" Width="950" Height="365" Margin="15">
+            <Grid>
+
+                <DataGrid  Height="315" GridLinesVisibility="Horizontal" ColumnHeaderHeight="25" Margin="10,0,10,0" x:Name="DGridAvgTeams">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Rank" Binding="{Binding PostSeason.Rank}"/>
+                        <DataGridTextColumn Header="Name" Binding="{Binding TeamName}"/>
+                        <DataGridTextColumn Header="Conference" Binding="{Binding Division.Conference.Name}" />
+                        <DataGridTextColumn Header="Division" Binding="{Binding Division.Name}" />
+                        <DataGridTextColumn Header="Points" Binding="{Binding Points}"/>
+                        <DataGridTextColumn Header="Rebounds" Binding="{Binding Rebounds}"/>
+                        <DataGridTextColumn Header="Assists" Binding="{Binding Assists}"/>
+                        <DataGridTextColumn Header="Steals" Binding="{Binding Steals}"/>
+                        <DataGridTextColumn Header="Blocks" Binding="{Binding Blocks}"/>
+                        <DataGridTextColumn Header="Turnovers" Binding="{Binding Turnovers}"/>
+                        <DataGridTextColumn Header="Fouls" Binding="{Binding Fouls}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <DataGrid  Height="315" GridLinesVisibility="Horizontal" ColumnHeaderHeight="25" Margin="10,0,10,0" x:Name="DGridTotalTeams" Visibility="Hidden">                    
+                    <DataGrid.Columns>
+                        <DataGridTextColumn x:Name="Rank" Header="Rank" Binding="{Binding PostSeason.Rank}"/>
+                        <DataGridTextColumn Header="Name" Binding="{Binding TeamName}"/>
+                        <DataGridTextColumn Header="Conference" Binding="{Binding Division.Conference.Name}" />
+                        <DataGridTextColumn Header="Division" Binding="{Binding Division.Name}" />
+                        <DataGridTextColumn Header="Points" Binding="{Binding sumPoints}"/>
+                        <DataGridTextColumn Header="Rebounds" Binding="{Binding sumRebounds}"/>
+                        <DataGridTextColumn Header="Assists" Binding="{Binding sumAssists}"/>
+                        <DataGridTextColumn Header="Steals" Binding="{Binding sumSteals}"/>
+                        <DataGridTextColumn Header="Blocks" Binding="{Binding sumBlocks}"/>
+                        <DataGridTextColumn Header="Turnovers" Binding="{Binding sumTurnovers}"/>
+                        <DataGridTextColumn Header="Fouls" Binding="{Binding sumFouls}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>

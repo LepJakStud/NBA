@@ -1,0 +1,214 @@
+﻿<Page x:Class="NBA.Pages.MatchupDetail"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NBA.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MatchupDetail">
+
+    <Grid Background="White">
+        <ListView x:Name="LViewCurrentMatch" Height="100" Width="1000" VerticalAlignment="Top" Style="{StaticResource Main}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                            <Label Content="{Binding awayTeam.TeamName}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="35,10,11,0" FontSize="15" Foreground="CornflowerBlue"/>
+                        <Image Source="{Binding awayTeam.Logo}" HorizontalAlignment="Left"  Width="60" Height="60" Margin="0,0,11,0"/>
+                        <Label Content="{Binding Matchup.Team_Away_Score}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,10,11,0" FontSize="15" Foreground="CornflowerBlue"/>
+                        <Label Content="{Binding Matchup.Team_Home_Score}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="300,10,11,0" FontSize="15" Foreground="CornflowerBlue"/>
+                        <Image Source="{Binding homeTeam.Logo}" HorizontalAlignment="Right" Width="60" Height="60" Margin="0,0,11,0"/>
+                            <Label Content="{Binding homeTeam.TeamName}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,10,11,0" FontSize="15" Foreground="CornflowerBlue"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+        <DataGrid x:Name="DGridScore" VerticalAlignment="Top" Width="270" ColumnHeaderHeight="25" Margin="-75,0,0,200" HorizontalScrollBarVisibility="Hidden" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Abbr}" Width="45"/>
+                <DataGridTextColumn Header="T" Binding="{Binding Total}" Width="36"/>
+                <DataGridTextColumn Header="1st" Binding="{Binding Score1}" Width="36"/>
+                <DataGridTextColumn Header="2st" Binding="{Binding Score2}" Width="36"/>
+                <DataGridTextColumn Header="3st" Binding="{Binding Score3}" Width="36"/>
+                <DataGridTextColumn Header="4st" Binding="{Binding Score4}" Width="36"/>
+                <DataGridTextColumn Header="OT1" Width="36"/> 
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label x:Name="Status" Width="90" Height="25" Margin="-70,-300,0,0" Foreground="White" FontSize="12" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <TabControl Height="345" Margin="15,58,15,15">
+            <TabItem Header="Team Status" Height="27" Width="110">
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel>
+                        <Border BorderBrush="Black" BorderThickness="0.5">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image x:Name="AwayHeader" Margin="300,0,0,0" Height="70"/>
+                                    <Image x:Name="HomeHeader" Height="70" Margin="40,0,0,0"/>
+                                </StackPanel>
+                                <DataGrid x:Name="DGridStates" AutoGenerateColumns="False" HeadersVisibility="None" Height="220" MinRowHeight="27" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" ColumnHeaderHeight="60" Margin="15,0,0,0" Width="490">
+                                    <DataGrid.Columns>
+                                        <DataGridTemplateColumn Width="260">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Label Content="{Binding action}" FontSize="12"/>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                        <DataGridTemplateColumn Width="115">
+                                            <DataGridTemplateColumn.Header>
+                                                <Image Source="{Binding awayLogo}" HorizontalAlignment="Left" Width="60" Height="60" Margin="0,0,11,0"/>
+                                            </DataGridTemplateColumn.Header>
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding awayTeam}" VerticalAlignment="Center" FontSize="12"/>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                        <DataGridTemplateColumn Width="115">
+                                            <DataGridTemplateColumn.Header>
+                                                <Image Source="{Binding homeLogo}" HorizontalAlignment="Left"  Width="60" Height="60" Margin="0,0,11,0"/>
+                                            </DataGridTemplateColumn.Header>
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding homeTeam}" FontSize="12" VerticalAlignment="Center"/>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+
+                            </StackPanel>
+                        </Border>
+
+                    </StackPanel>
+                    
+                    <StackPanel Margin="-7,18,0,15" Width="450">
+                        <Border BorderBrush="Black" Width="360" Height="105" Margin="0,-10,0,0" BorderThickness="0.5">
+                            <StackPanel Orientation="Vertical" Margin="40,0,0,0">
+                                <Label Content="Field Goal %" FontSize="12"/>
+                                <StackPanel Orientation="Horizontal" Height="40">
+                                    <Label x:Name="AwayTeamAbbr" Width="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                                    <Border x:Name="FullFieldAway" BorderBrush="Black" Width="220" BorderThickness="0.5" Height="20">
+                                        <Rectangle x:Name="FieldAway"  HorizontalAlignment="Left" Fill="#FF6995C2"/>
+                                    </Border>
+                                    <Label x:Name="FieldAwayPercent" Width="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,-10,0,0" Height="40">
+                                    <Label x:Name="HomeTeamAbbr" Width="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                                    <Border BorderBrush="Black" Width="220" BorderThickness="0.5" Height="20">
+                                        <Rectangle x:Name="FieldHome"  HorizontalAlignment="Left" Fill="#FF6995C2"/>
+                                    </Border>
+                                    <Label x:Name="FieldHomePercent" Width="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border BorderBrush="Black" Width="360" Height="105" Margin="0,10,0,0" BorderThickness="0.5">
+                            <StackPanel Orientation="Vertical" Margin="40,0,0,0">
+                                <Label Content="Three Point %" FontSize="12"/>
+                                <StackPanel Orientation="Horizontal" Height="40">
+                                    <Label x:Name="AwayTeamAbbr2" Width="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                                    <Border x:Name="FullThreePointAway" BorderBrush="Black" Width="220" BorderThickness="0.5" Height="20">
+                                        <Rectangle x:Name="ThreePointAway"  HorizontalAlignment="Left" Fill="#FF6995C2"/>
+                                    </Border>
+                                    <Label x:Name="ThreePointAwayPercent" Width="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,-10,0,0" Height="40">
+                                    <Label x:Name="HomeTeamAbbr2" Width="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                                    <Border BorderBrush="Black" Width="220" BorderThickness="0.5" Height="20">
+                                        <Rectangle x:Name="ThreePointHome"  HorizontalAlignment="Left" Fill="#FF6995C2"/>
+                                    </Border>
+                                    <Label x:Name="ThreePointHomePercent" Width="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Short Chart" Width="120">
+                <Grid Width="950">
+                    <Grid.Background>
+                        <ImageBrush ImageSource="/Images/court-transparent.png"/>
+                    </Grid.Background>
+                    <StackPanel Orientation="Horizontal">
+                        <Border BorderBrush="Black" BorderThickness="0.5" VerticalAlignment="Center" Height="200" Margin="120,25,0,0">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image x:Name="AwayLogo" Height="30"/>
+                                    <Label Content="Starter"/>
+                                </StackPanel>
+                                <ListView x:Name="LViewStarterAwayTeam" Background="Transparent">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border BorderBrush="Black" BorderThickness="0.5" Height="28" Margin="4,0,4,0" Width="200" Background="White">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Image Source="{Binding Player.Img}"/>
+                                                    <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
+                                                        <TextBlock Text="{Binding Player.Name}" FontSize="12" VerticalAlignment="Center"/>
+                                                        <TextBlock Text="{Binding ShirtNumber, StringFormat=' ({0}#)'}" FontSize="12" VerticalAlignment="Center"/>
+                                                    </StackPanel>
+                                                </StackPanel>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </StackPanel>
+                        </Border>
+                        <Image x:Name="MainHomeLogo" Height="100" Margin="85,0,0,0"/>
+                        <Border BorderBrush="Black" BorderThickness="0.5" VerticalAlignment="Center" Height="200" Margin="120,25,0,0">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image x:Name="HomeLogo" Height="30"/>
+                                    <Label Content="Starter"/>
+                                </StackPanel>
+                                <ListView x:Name="LViewStarterHomeTeam" Background="Transparent">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border BorderBrush="Black" BorderThickness="0.5" Height="28" Margin="4,0,4,0" Width="200" Background="White">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Image Source="{Binding Player.Img}"/>
+                                                    <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
+                                                        <TextBlock Text="{Binding Player.Name}" FontSize="12" VerticalAlignment="Center"/>
+                                                        <TextBlock Text="{Binding ShirtNumber, StringFormat=' ({0}#)'}" FontSize="12" VerticalAlignment="Center" />
+                                                    </StackPanel>
+                                                </StackPanel>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Log" Width="120">
+                <StackPanel Width="950">
+                    <StackPanel Orientation="Horizontal" Margin="20,5,0,0">
+                        <Label Content="Quarter:" FontSize="13" VerticalContentAlignment="Center"/>
+                        <ComboBox x:Name="comboQuarter" Margin="15,0,0,0" Width="75" Height="20" VerticalAlignment="Center"/>
+                        <Button Content="Search" Style="{StaticResource RoundButton}" x:Name="btnSearch" Click="btnSearch_Click"/>
+                    </StackPanel>
+                <DataGrid x:Name="DGridLog" VerticalScrollBarVisibility="Hidden" Height="235" Margin="-115,-3,0,0" Width="800" ScrollViewer.CanContentScroll="True" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                            <DataGridTextColumn Header="OccurTime" Binding="{Binding OccurTime}" Width="100" FontSize="12"/>
+                            <DataGridTextColumn Header="Team" Binding="{Binding Team.Abbr}" Width="85" FontSize="12"/>
+                        <DataGridTemplateColumn Width="175" Header="Player">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding Player.Name}" FontSize="12" VerticalAlignment="Center"/>
+                                            <TextBlock Text="{Binding Player.PlayerInTeam.ShirtNumber, StringFormat=' ({0}#)'}" FontSize="12" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="ActionType" Binding="{Binding ActionType.Name}" Width="170" FontSize="12"/>
+                        <DataGridTextColumn Header="Reamark" Binding="{Binding Remark}" Width="260" FontSize="12"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                    
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Page>

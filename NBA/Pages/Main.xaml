@@ -1,0 +1,45 @@
+﻿<Page x:Class="NBA.Pages.Main"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NBA.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="560" d:DesignWidth="780"
+      Title="Main">
+    <Grid Loaded="Grid_Loaded" Background="White">
+
+        <Image HorizontalAlignment="Left" Height="110" Margin="30,10,0,0" VerticalAlignment="Top" Source="/Images/logo.jpg">
+            <Image.OpacityMask>
+                <ImageBrush/>
+            </Image.OpacityMask>
+        </Image>
+
+        <StackPanel>
+
+            <Label Content="NBA Management System" Height="60" VerticalAlignment="Top"  HorizontalContentAlignment="Center" 
+               Style="{StaticResource Title}" VerticalContentAlignment="Center" Margin="5"/>
+
+            <Label Height="70" Content="                Welcome to use this NBA Management system, you can &#xA; redirect to different pages according to your role by clicking the buttons bellow."
+               VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+
+            <Border BorderBrush="Gray" BorderThickness="0.5" Height="190" Width="380" Margin="5">
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Visitor" Style="{StaticResource BlueButton}"  Margin="25" x:Name="btnVisitor" Click="btnVisitor_Click"/>
+                    <Button Content="Admin" Style="{StaticResource BlueButton}" x:Name="btnAdmin" Click="btnAdmin_Click"/>
+                </StackPanel>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="0.5" Height="130" Width="auto" Margin="5,20,5,10">
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="&lt;" Name="btnPreviousImage" Click="btnPreviousImage_Click" Width="50" Background="White" FontSize="70" BorderBrush="White"/>
+                    <Image x:Name="ImageHolder1" Stretch="Fill" Width="190" Height="105" Margin="15,0,0,0"/>
+                    <Image x:Name="ImageHolder2" Stretch="Fill" Width="190" Height="105"  Margin="15,0,0,0" />
+                    <Image x:Name="ImageHolder3" Stretch="Fill" Width="190" Height="105"  Margin="15,0,0,0"/>
+                    <Button Content="&gt;" Name="btnNextImage" Click="btnNextImage_Click" Margin="15,0,0,0" Width="50" Background="White" FontSize="70" BorderBrush="White"/>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+        <Label Width="auto" x:Name="Blue" Height="23" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" Foreground="White" FontSize="12"/>
+
+    </Grid>
+</Page>

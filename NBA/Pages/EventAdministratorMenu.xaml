@@ -1,0 +1,26 @@
+﻿<Page x:Class="NBA.Pages.EventAdministratorMenu"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NBA.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="EventAdministratorMenu">
+
+    <Grid Background="White">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Label Content="Welcome to use this system , you can click the buttons below to navigate to the &#xA;                                                corresponding page. " HorizontalContentAlignment="Center"/>
+
+                <StackPanel Orientation="Horizontal" Margin="40,0,50,0">
+                    <Button Content="Manage Seasons" x:Name="btnSeasons" Style="{StaticResource BlueButton}" Width="180" Height="50" Margin="60" Click="btnSeasons_Click"/>
+                    <Button Content="Manage Matchups" x:Name="btnMatchups" Style="{StaticResource BlueButton}" Width="180" Height="50" Margin="50,60,60,60" Click="btnMatchups_Click"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="40,-50,50,0">
+                    <Button Content="Manage Teams" x:Name="btnTeams" Style="{StaticResource BlueButton}" Width="180" Height="50" Margin="60" Click="btnTeams_Click"/>
+                    <Button Content="Manage Players" x:Name="btnPlayers" Style="{StaticResource BlueButton}" Width="180" Height="50" Margin="50,60,60,60" Click="btnPlayers_Click"/>
+                </StackPanel>
+            </StackPanel>
+    </Grid>
+</Page>

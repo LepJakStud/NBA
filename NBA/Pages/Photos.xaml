@@ -1,0 +1,93 @@
+﻿<Page x:Class="NBA.Pages.Photos"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NBA.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MatchupMain">
+
+    <Grid Background="White">
+        <DataGrid x:Name="DGridPhotos" AutoGenerateColumns="False" MinRowHeight="110" HeadersVisibility="None" Width="930" Height="340" Margin="25,-18,25,0" GridLinesVisibility="None">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding Photo1}" Height="95">
+                                <Image.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Download" Click="Download_Click">
+                                            <MenuItem.Icon>
+                                                <Image Source="/Images/download.png"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                    </ContextMenu>
+                                </Image.ContextMenu>
+                            </Image>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding Photo2}" Height="95">
+                                <Image.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Download" Click="Download_Click">
+                                            <MenuItem.Icon>
+                                                <Image Source="/Images/download.png"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                    </ContextMenu>
+                                </Image.ContextMenu>
+                            </Image>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding Photo3}" Height="95">
+                                <Image.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Download" Click="Download_Click">
+                                            <MenuItem.Icon>
+                                                <Image Source="/Images/download.png"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                    </ContextMenu>
+                                </Image.ContextMenu>
+                            </Image>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding Photo4}" Height="95">
+                                <Image.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Download" Click="Download_Click">
+                                            <MenuItem.Icon>
+                                                <Image Source="/Images/download.png"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                    </ContextMenu>
+                                </Image.ContextMenu>
+                            </Image>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Height="30" Margin="10,380,0,10" Width="790">
+            <Label x:Name="Total" Content="Total XX Photos , YY Photos in one page, Total ZZ Pages" FontSize="12" VerticalAlignment="Center" />
+            <Button x:Name="btnFirst" Content="|&lt;" Width="40" Click="btnFirst_Click" VerticalAlignment="Top"  FontSize="12" HorizontalAlignment="Left" Height="20" Style="{StaticResource RoundButton}"/>
+            <Button x:Name="btnPrevious" Content="&lt;" Width="20" Click="btnPrevious_Click" VerticalAlignment="Top" FontSize="12" HorizontalAlignment="Left" Height="20"  Style="{StaticResource RoundButton}"/>
+            <TextBox x:Name="Position" Width="35" HorizontalAlignment="Left" TextChanged="Position_TextChanged" HorizontalContentAlignment="Center" Height="20" VerticalAlignment="Center" />
+            <Button x:Name="btnNext" Content="&gt;" Width="20" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnNext_Click"   FontSize="12" Height="20"  Style="{StaticResource RoundButton}" />
+            <Button x:Name="btnLast" Content="&gt;|" Width="40" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnLast_Click"  FontSize="12" Height="20" Style="{StaticResource RoundButton}"/>
+        </StackPanel>
+    </Grid>
+</Page>
