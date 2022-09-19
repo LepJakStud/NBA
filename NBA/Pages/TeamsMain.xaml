@@ -6,152 +6,107 @@
       xmlns:local="clr-namespace:NBA.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="560" d:DesignWidth="780"
-      Title="TeamsMain" Background="White">
-    
-    
+      Title="TeamsMain" Background="White"
+      Loaded="Page_Loaded">
+
     <Grid>
-        <TabControl Margin="20">
-            <TabItem Header="Eastern" Width="80">
-                
-                <StackPanel Orientation="Horizontal" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid Background="#FF6995C2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
 
-                    <StackPanel Margin="0,10,0,0">
-                        <Label Content="Atlantic" Background="LightGray" HorizontalContentAlignment="Center"/>
-                        <ListView x:Name="LViewAtlantic">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Width="293" Height="57">
-                                        <StackPanel Orientation="Horizontal">
-                                            <Image Width="50" Height="50" Source="{Binding Path = Logo}" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                                            <Button VerticalAlignment="Top" Content="{Binding TeamName}" Click="Details_Click" Style="{StaticResource ButtonName}" Height="20" FontSize="14" Margin="10,0,0,0"/>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal" Margin="70,40,0,0" HorizontalAlignment="Left">
-                                            <Label Content="Roster" FontSize="11" Foreground="DodgerBlue" Margin="0,-10,0,0"/>
-                                            <Label Content="Matchup" FontSize="11" Foreground="DodgerBlue" Margin="30,-10,0,0"/>
-                                            <Label Content="First LineUp" FontSize="11" Foreground="DodgerBlue" Margin="20,-10,0,0"/>
-                                        </StackPanel>
-                                    </Grid>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </StackPanel>
-
-                    <StackPanel Margin="5,10,0,0">
-                        <Label Content="Central" Background="LightGray" HorizontalContentAlignment="Center"/>
-                        <ListView x:Name="LViewCentral" Style="{StaticResource TeamsList}">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Width="293" Height="57">
-                                        <StackPanel Orientation="Horizontal">
-                                            <Image Width="50" Height="50" Source="{Binding Path = Logo}" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                                            <Button VerticalAlignment="Top" Content="{Binding TeamName}" Click="Details_Click" Style="{StaticResource ButtonName}" Height="20" FontSize="14" Margin="10,0,0,0"/>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal" Margin="70,40,0,0" HorizontalAlignment="Left">
-                                            <Label Content="Roster" FontSize="11" Foreground="DodgerBlue" Margin="0,-10,0,0"/>
-                                            <Label Content="Matchup" FontSize="11" Foreground="DodgerBlue" Margin="30,-10,0,0"/>
-                                            <Label Content="First LineUp" FontSize="11" Foreground="DodgerBlue" Margin="20,-10,0,0"/>
-                                        </StackPanel>
-                                    </Grid>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </StackPanel>
-
-                    <StackPanel Margin="5,10,0,0">
-                        <Label Content="Southeast" Background="LightGray" HorizontalContentAlignment="Center"/>
-                        <ListView x:Name="LViewSoutheast" Style="{StaticResource TeamsList}">
-
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Width="293" Height="57">
-                                        <StackPanel Orientation="Horizontal">
-                                            <Image Width="50" Height="50" Source="{Binding Path = Logo}" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                                            <Button VerticalAlignment="Top" Content="{Binding TeamName}" Click="Details_Click" Style="{StaticResource ButtonName}" Height="20" FontSize="14" Margin="10,0,0,0"/>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal" Margin="70,40,0,0" HorizontalAlignment="Left">
-                                            <Label Content="Roster" FontSize="11" Foreground="DodgerBlue" Margin="0,-10,0,0"/>
-                                            <Label Content="Matchup" FontSize="11" Foreground="DodgerBlue" Margin="30,-10,0,0"/>
-                                            <Label Content="First LineUp" FontSize="11" Foreground="DodgerBlue" Margin="20,-10,0,0"/>
-                                        </StackPanel>
-                                    </Grid>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </StackPanel>
-                    
+            <ListView x:Name="AlphabelFilterListView"
+                      SelectionChanged="AlphabelFilterListView_SelectionChanged"
+                      Margin="5"
+                      Background="#FF6995C2"
+                      Foreground="white"
+                      BorderThickness="0">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
+            <WrapPanel Grid.Row="1">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Season:"
+                               Foreground="White"
+                               VerticalAlignment="Center"
+                               Margin="5"/>
+                    <ComboBox x:Name="SeasonComboBox"
+                              Width="120"
+                              VerticalAlignment="Center"
+                              Margin="5"
+                              SelectionChanged="SeasonComboBox_SelectionChanged"/>
                 </StackPanel>
-
-            </TabItem>
-            <TabItem Header="Western" Width="80">
-
-                <StackPanel Orientation="Horizontal" >
-
-                    <StackPanel Margin="0,10,0,0">
-                        <Label Content="Northwest" Background="LightGray" HorizontalContentAlignment="Center"/>
-                        <ListView x:Name="LViewNorthwest">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Width="293" Height="57">
-                                        <StackPanel Orientation="Horizontal">
-                                            <Image Width="50" Height="50" Source="{Binding Path = Logo}" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                                            <Button VerticalAlignment="Top" Content="{Binding TeamName}" Click="Details_Click" Style="{StaticResource ButtonName}" Height="20" FontSize="14" Margin="10,0,0,0"/>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal" Margin="70,40,0,0" HorizontalAlignment="Left">
-                                            <Label Content="Roster" FontSize="11" Foreground="DodgerBlue" Margin="0,-10,0,0"/>
-                                            <Label Content="Matchup" FontSize="11" Foreground="DodgerBlue" Margin="30,-10,0,0"/>
-                                            <Label Content="First LineUp" FontSize="11" Foreground="DodgerBlue" Margin="20,-10,0,0"/>
-                                        </StackPanel>
-                                    </Grid>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </StackPanel>
-
-                    <StackPanel Margin="5,10,0,0">
-                        <Label Content="Pacific" Background="LightGray" HorizontalContentAlignment="Center"/>
-                        <ListView x:Name="LViewPacific">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Width="293" Height="57">
-                                        <StackPanel Orientation="Horizontal">
-                                            <Image Width="50" Height="50" Source="{Binding Path = Logo}" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                                            <Button VerticalAlignment="Top" Content="{Binding TeamName}" Click="Details_Click" Style="{StaticResource ButtonName}" Height="20" FontSize="14" Margin="10,0,0,0"/>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal" Margin="70,40,0,0" HorizontalAlignment="Left">
-                                            <Label Content="Roster" FontSize="11" Foreground="DodgerBlue" Margin="0,-10,0,0"/>
-                                            <Label Content="Matchup" FontSize="11" Foreground="DodgerBlue" Margin="30,-10,0,0"/>
-                                            <Label Content="First LineUp" FontSize="11" Foreground="DodgerBlue" Margin="20,-10,0,0"/>
-                                        </StackPanel>
-                                    </Grid>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </StackPanel>
-
-                    <StackPanel Margin="5,10,0,0">
-                        <Label Content="Southwest" Background="LightGray" HorizontalContentAlignment="Center"/>
-                        <ListView x:Name="LViewSouthwest">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Width="293" Height="57">
-                                        <StackPanel Orientation="Horizontal">
-                                            <Image Width="50" Height="50" Source="{Binding Path = Logo}" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                                            <Button VerticalAlignment="Top" Content="{Binding TeamName}" Click="Details_Click" Background="Transparent" BorderBrush="Transparent" Height="20" FontSize="14" Margin="10,0,0,0"/>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal" Margin="70,40,0,0" HorizontalAlignment="Left">
-                                            <Label Content="Roster" FontSize="11" Foreground="DodgerBlue" Margin="0,-10,0,0"/>
-                                            <Label Content="Matchup" FontSize="11" Foreground="DodgerBlue" Margin="30,-10,0,0"/>
-                                            <Label Content="First LineUp" FontSize="11" Foreground="DodgerBlue" Margin="20,-10,0,0"/>
-                                        </StackPanel>
-                                    </Grid>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </StackPanel>
-
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Team:"
+                               Foreground="White"
+                               VerticalAlignment="Center"
+                               Margin="5"/>
+                    <ComboBox x:Name="TeamComboBox"
+                              Width="120"
+                              VerticalAlignment="Center"
+                              Margin="5"
+                              SelectionChanged="TeamComboBox_SelectionChanged"/>
                 </StackPanel>
-
-            </TabItem>
-        </TabControl>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="PlayerName:"
+                               Foreground="White"
+                               VerticalAlignment="Center"
+                               Margin="5"/>
+                    <ComboBox x:Name="PlayerNameTextBox"
+                              Width="120"
+                              VerticalAlignment="Center"
+                              Margin="5"
+                              SelectionChanged="PlayerNameTextBox_SelectionChanged"/>
+                </StackPanel>
+            </WrapPanel>
+        </Grid>
+        <DataGrid x:Name="PlayersDataGrid"
+                  IsReadOnly="True"
+                  AutoGenerateColumns="False"
+                  Grid.Row="1"
+                  Margin="5"
+                  ColumnWidth="*"
+                  VerticalAlignment="Center">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding Photo}"
+                                   Height="40"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="No."
+                                    Binding="{Binding PlayerId}"/>
+                <DataGridTextColumn Header="Name"
+                                    Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Team"
+                                    Binding="{Binding Team.TeamName}"/>
+                <DataGridTextColumn Header="Position"
+                                    Binding="{Binding Position.Abbr}"/>
+                <DataGridTextColumn Header="Weight"
+                                    Binding="{Binding Weight}"/>
+                <DataGridTextColumn Header="Height"
+                                    Binding="{Binding Height}"/>
+                <DataGridTextColumn Header="Experiance"
+                                    Binding="{Binding ExperianceYears}"/>
+                <DataGridTextColumn Header="Country"
+                                    Binding="{Binding Country.CountryName}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Grid.Row="2">
+            <TextBlock x:Name="CountsTb"
+                       Text="Total XX records , YY records in one page"
+                       TextAlignment="Center"/>
+        </Grid>
     </Grid>
 </Page>
