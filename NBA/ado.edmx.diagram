@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3d6d60f0da77472b9106a42f75deca93" Name="Diagram1">
+        <EntityTypeShape EntityType="BorisovNBAModel.ActionType" Width="1.5" PointX="10.5" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BorisovNBAModel.Admin" Width="1.5" PointX="14" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BorisovNBAModel.Conference" Width="1.5" PointX="0.75" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BorisovNBAModel.Country" Width="1.5" PointX="5.25" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BorisovNBAModel.Division" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BorisovNBAModel.Matchup" Width="1.5" PointX="7.5" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BorisovNBAModel.MatchupDetail" Width="1.5" PointX="9.75" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="BorisovNBAModel.MatchupLog" Width="1.5" PointX="12.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BorisovNBAModel.MatchupType" Width="1.5" PointX="5.25" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BorisovNBAModel.Picture" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BorisovNBAModel.Player" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BorisovNBAModel.PlayerInTeam" Width="1.5" PointX="10.5" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BorisovNBAModel.PlayerStatistic" Width="1.5" PointX="9.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BorisovNBAModel.Position" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BorisovNBAModel.Role" Width="1.5" PointX="11.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BorisovNBAModel.Season" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BorisovNBAModel.sysdiagram" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BorisovNBAModel.Team" Width="1.5" PointX="5.25" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BorisovNBAModel.PostSeason" Width="1.5" PointX="7.5" PointY="7.125" IsExpanded="true" />
+        <AssociationConnector Association="BorisovNBAModel.FK_MatchupLog_ActionType" ManuallyRouted="false" />
+        <AssociationConnector Association="BorisovNBAModel.FK_Admin_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="BorisovNBAModel.FK_Division_Conference" ManuallyRouted="false" />
+        <AssociationConnector Association="BorisovNBAModel.FK_Player_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="BorisovNBAModel.FK_Team_Division" ManuallyRouted="false" />
+        <AssociationConnector Association="BorisovNBAModel.FK_Matchup__MatchupType_" ManuallyRouted="false" />
+        <AssociationConnector Association="BorisovNBAModel.FK_Matchup__Season_" ManuallyRouted="false" />
+        <AssociationConnector Association="BorisovNBAModel.FK_Matchup_Team" ManuallyRouted="false" />
+        <AssociationConnector Association="BorisovNBAModel.FK_Matchup_Team1" ManuallyRouted="false" />
+        <AssociationConnector Association="BorisovNBAModel.FK_MatchupDetail__Matchup_" ManuallyRouted="false" />
+        <AssociationConnector Association="BorisovNBAModel.FK_MatchupLog_Matchup" ManuallyRouted="false" />
+        <AssociationConnector Association="BorisovNBAModel.FK_PlayerStatistics__Matchup_" ManuallyRouted="false" />
+        <AssociationConnector Association="BorisovNBAModel.FK_MatchupLog_Player" ManuallyRouted="false" />
+        <AssociationConnector Association="BorisovNBAModel.FK_MatchupLog_Player_" ManuallyRouted="false" />
+        <AssociationConnector Association="BorisovNBAModel.FK_MatchupLog_Team" ManuallyRouted="false" />
+        <AssociationConnector Association="BorisovNBAModel.FK_Player_Position" ManuallyRouted="false" />
+        <AssociationConnector Association="BorisovNBAModel.FK_PlayerInTeam__Player_" ManuallyRouted="false" />
+        <AssociationConnector Association="BorisovNBAModel.FK_PlayerStatistics_Player" ManuallyRouted="false" />
+        <AssociationConnector Association="BorisovNBAModel.FK_PlayerInTeam__Season_" ManuallyRouted="false" />
+        <AssociationConnector Association="BorisovNBAModel.FK_PlayerInTeam_Team" ManuallyRouted="false" />
+        <AssociationConnector Association="BorisovNBAModel.FK_PlayerStatistics_Team" ManuallyRouted="false" />
+        <AssociationConnector Association="BorisovNBAModel.FK_PostSeason__Season_" ManuallyRouted="false" />
+        <AssociationConnector Association="BorisovNBAModel.FK_PostSeason_Team" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

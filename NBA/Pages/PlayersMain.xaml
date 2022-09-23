@@ -6,85 +6,106 @@
       xmlns:local="clr-namespace:NBA.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+      Loaded="Page_Loaded"
       Title="PlayersMain">
-    <Grid Background="White">
-        <Grid Background="#FF6995C2"  Height="61" VerticalAlignment="Top" Margin="0,25,0,0">
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
-                <Button Content="All" Foreground="White" Style="{StaticResource NameButton}" Click="Letter_Click"/>
-                <Button Content="A" Foreground="White" Style="{StaticResource NameButton}" Click="Letter_Click"/>
-                <Button Content="B" Foreground="White" Style="{StaticResource NameButton}" Click="Letter_Click"/>
-                <Button Content="C" Foreground="White" Style="{StaticResource NameButton}" Click="Letter_Click"/>
-                <Button Content="D" Foreground="White" Style="{StaticResource NameButton}" Click="Letter_Click"/>
-                <Button Content="E" Foreground="White" Style="{StaticResource NameButton}" Click="Letter_Click"/>
-                <Button Content="F" Foreground="White" Style="{StaticResource NameButton}" Click="Letter_Click"/>
-                <Button Content="G" Foreground="White" Style="{StaticResource NameButton}" Click="Letter_Click"/>
-                <Button Content="H" Foreground="White" Style="{StaticResource NameButton}" Click="Letter_Click"/>
-                <Button Content="I" Foreground="White" Style="{StaticResource NameButton}" Click="Letter_Click"/>
-                <Button Content="J" Foreground="White" Style="{StaticResource NameButton}" Click="Letter_Click"/>
-                <Button Content="K" Foreground="White" Style="{StaticResource NameButton}" Click="Letter_Click"/>
-                <Button Content="L" Foreground="White" Style="{StaticResource NameButton}" Click="Letter_Click"/>
-                <Button Content="M" Foreground="White" Style="{StaticResource NameButton}" Click="Letter_Click"/>
-                <Button Content="N" Foreground="White" Style="{StaticResource NameButton}" Click="Letter_Click"/>
-                <Button Content="O" Foreground="White" Style="{StaticResource NameButton}" Click="Letter_Click"/>
-                <Button Content="P" Foreground="White" Style="{StaticResource NameButton}" Click="Letter_Click"/>
-                <Button Content="Q" Foreground="White" Style="{StaticResource NameButton}" Click="Letter_Click"/>
-                <Button Content="R" Foreground="White" Style="{StaticResource NameButton}" Click="Letter_Click"/>
-                <Button Content="S" Foreground="White" Style="{StaticResource NameButton}" Click="Letter_Click"/>
-                <Button Content="T" Foreground="White" Style="{StaticResource NameButton}" Click="Letter_Click"/>
-                <Button Content="U" Foreground="White" Style="{StaticResource NameButton}" Click="Letter_Click"/>
-                <Button Content="V" Foreground="White" Style="{StaticResource NameButton}" Click="Letter_Click"/>
-                <Button Content="W" Foreground="White" Style="{StaticResource NameButton}" Click="Letter_Click"/>
-                <Button Content="X" Foreground="White" Style="{StaticResource NameButton}" Click="Letter_Click"/>
-                <Button Content="Y" Foreground="White" Style="{StaticResource NameButton}" Click="Letter_Click"/>
-                <Button Content="Z" Foreground="White" Style="{StaticResource NameButton}" Click="Letter_Click"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="20,30,0,0">
-                <Label Content="Season: " Foreground="White"/>
-                <ComboBox x:Name="comboSeason" Width="120" Height="20"  DisplayMemberPath="Name" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,5,0,0" Panel.ZIndex="2" SelectionChanged="comboSeason_SelectionChanged"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="240,30,0,0">
-                <Label Content="Team: " Foreground="White"/>
-                <ComboBox x:Name="comboTeams" Width="120" Height="20"  DisplayMemberPath="TeamName" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,5,0,0" Panel.ZIndex="2" SelectionChanged="comboTeams_SelectionChanged"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="500,30,0,0">
-                <Label Content="Playername: " Foreground="White"/>
-                <TextBox x:Name="Search" TextChanged="Search_TextChanged" Width="120" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,5,0,0" Panel.ZIndex="2"/>
-            </StackPanel>
-        </Grid>
-        <DataGrid  x:Name="DGridPlayers" MinRowHeight="70" Height="290" IsReadOnly="True" Width="922" HorizontalAlignment="Left" Margin="10,0,0,70" VerticalAlignment="Bottom" AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTemplateColumn Header="Image" Width="100" IsReadOnly="True">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Image Source="{Binding Player.Player.Img}"  Width="70" Height="70"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTextColumn Header="No." Binding="{Binding Player.ShirtNumber}"  Width="70"/>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid Background="#FF6995C2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
 
-                <DataGridTemplateColumn Header="Name" Width="107" >
+            <ListView x:Name="AlphabelFilterListView"
+                      SelectionChanged="AlphabelFilterListView_SelectionChanged"
+                      Margin="5"
+                      Background="#FF6995C2"
+                      Foreground="white"
+                      BorderThickness="0">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
+            <WrapPanel Grid.Row="1">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Season:"
+                               Foreground="White"
+                               VerticalAlignment="Center"
+                               Margin="5"/>
+                    <ComboBox x:Name="SeasonComboBox"
+                              Width="120"
+                              VerticalAlignment="Center"
+                              Margin="5"
+                              SelectionChanged="SeasonComboBox_SelectionChanged"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Team:"
+                               Foreground="White"
+                               VerticalAlignment="Center"
+                               Margin="5"/>
+                    <ComboBox x:Name="TeamComboBox"
+                              Width="120"
+                              VerticalAlignment="Center"
+                              Margin="5"
+                              SelectionChanged="TeamComboBox_SelectionChanged"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="PlayerName:"
+                               Foreground="White"
+                               VerticalAlignment="Center"
+                               Margin="5"/>
+                    <ComboBox x:Name="PlayerNameTextBox"
+                              Width="120"
+                              VerticalAlignment="Center"
+                              Margin="5"
+                              SelectionChanged="PlayerNameTextBox_SelectionChanged"/>
+                </StackPanel>
+            </WrapPanel>
+        </Grid>
+        <DataGrid x:Name="PlayersDataGrid"
+                  IsReadOnly="True"
+                  AutoGenerateColumns="False"
+                  Grid.Row="1"
+                  Margin="5"
+                  ColumnWidth="auto"
+                  VerticalAlignment="Center">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Style="{StaticResource NameButton}" Content="{Binding Player.Player.Name}" x:Name="PlayerName" Click="PlayerName_Click" FontSize="12" Width="107" Margin="0,0,1,0" HorizontalAlignment="Left"/>
+                            <Image Source="{Binding Photo}"
+                                   Height="40"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Team" Binding="{Binding Player.Team.Abbr}"  Width="107" />
-                <DataGridTextColumn Header="Position" Binding="{Binding Player.Player.Position.Abbr}"  Width="106" />
-                <DataGridTextColumn Header="Weight" Binding="{Binding Player.Player.Weight}" Width="85"/>
-                <DataGridTextColumn Header="Height" Binding="{Binding Player.Player.Height}" Width="85"/>
-                <DataGridTextColumn Header="Experience" Binding="{Binding Experience}" Width="130" />
-                <DataGridTextColumn Header="Country"  Binding="{Binding Player.Player.Country.CountryName}" Width="100"/>
+                <DataGridTextColumn Header="No."
+                                    Binding="{Binding PlayerId}"/>
+                <DataGridTextColumn Header="Name"
+                                    Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Team"
+                                    Binding="{Binding Team.TeamName}"/>
+                <DataGridTextColumn Header="Position"
+                                    Binding="{Binding Position.Abbr}"/>
+                <DataGridTextColumn Header="Weight"
+                                    Binding="{Binding Weight}"/>
+                <DataGridTextColumn Header="Height"
+                                    Binding="{Binding Height}"/>
+                <DataGridTextColumn Header="Experiance"
+                                    Binding="{Binding ExperianceYears}"/>
+                <DataGridTextColumn Header="Country"
+                                    Binding="{Binding Country.CountryName}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Grid Height="25" VerticalAlignment="Bottom" Margin="20,0,0,45" HorizontalAlignment="Left" Width="960" Panel.ZIndex="5">
-            <Button x:Name="btnFirst" Content="&lt;&lt;" Width="40" Margin="0,0,10,0" Click="btnFirst_Click" Foreground="#FF6995C2" FontSize="15" HorizontalAlignment="Left" Style="{StaticResource NameButton}"/>
-            <Button x:Name="btnPrevious" Content="&lt;" Width="20" Click="btnPrevious_Click" Foreground="#FF6995C2" FontSize="15" HorizontalAlignment="Left" Margin="40,0,0,0" Style="{StaticResource NameButton}"/>
-            <TextBox x:Name="Position" Width="35" HorizontalAlignment="Left" Margin="70,0,0,0" TextChanged="Position_TextChanged" HorizontalContentAlignment="Center" />
-            <Label x:Name="ofPosition" Width="40" FontSize="12" HorizontalAlignment="Left" Margin="105,0,0,0" />
-            <Button x:Name="btnNext" Content="&gt;" Width="20" HorizontalAlignment="Left" Margin="160,0,0,0" Click="btnNext_Click" Foreground="#FF6995C2"  FontSize="15" Style="{StaticResource NameButton}"/>
-            <Button x:Name="btnLast" Content="&gt;&gt;" Width="40" HorizontalAlignment="Left" Margin="180,0,0,0" Click="btnLast_Click" Foreground="#FF6995C2" FontSize="15" Style="{StaticResource NameButton}"/>
-            <Label x:Name="Total" Content="Total XX records , YY records in one page" FontSize="12" HorizontalContentAlignment="Center" Width="300"/>
+        <Grid Grid.Row="2">
+            <TextBlock x:Name="CountsTb"
+                       Text="Total XX records , YY records in one page"
+                       TextAlignment="Center"/>
         </Grid>
     </Grid>
 </Page>

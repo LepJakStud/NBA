@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using NBA.Models;
 
 namespace NBA.Pages
 {
@@ -37,11 +36,11 @@ namespace NBA.Pages
             {
                 AlphabelFilterListView.ItemsSource = new string[] { "ALL", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "U", "W", "X", "Y", "Z" };
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
-            
+
         }
 
         private void SeasonComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

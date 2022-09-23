@@ -13,5 +13,6 @@ namespace NBA
     /// </summary>
     public partial class App : Application
     {
+        public static BorisovNBAEntities DB { get; set; } = new BorisovNBAEntities();
     }
 }

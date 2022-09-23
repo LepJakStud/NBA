@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using NBA.Models;
 
 namespace NBA.Pages
 {
@@ -21,18 +20,18 @@ namespace NBA.Pages
     /// </summary>
     public partial class TeamReport : Page
     {
-        public List<Team> _allTeams = NBAEntities.GetContext().Team.ToList();
+        //public List<Team> _allTeams = NBAEntities.GetContext().Team.ToList();
         public TeamReport()
         {
             InitializeComponent();
-            DGridAvgTeams.ItemsSource = _allTeams;
-            DGridTotalTeams.ItemsSource = _allTeams;
-            comboView.ItemsSource=new List<string>() { "Average","Total" };
-            comboView.SelectedIndex=0;
-            comboType.ItemsSource=new List<string>() { "Preseason", "Regular Season", "Post Season " };
-            comboType.SelectedIndex=0;
-            comboRank.ItemsSource = new List<string>() { "Points", "Rebounds", "Assists", "Steals", "Blocks", "Turnovers", "Fouls" };
-            comboRank.SelectedIndex=0;
+            //DGridAvgTeams.ItemsSource = _allTeams;
+            //DGridTotalTeams.ItemsSource = _allTeams;
+            //comboView.ItemsSource=new List<string>() { "Average","Total" };
+            //comboView.SelectedIndex=0;
+            //comboType.ItemsSource=new List<string>() { "Preseason", "Regular Season", "Post Season " };
+            //comboType.SelectedIndex=0;
+            //comboRank.ItemsSource = new List<string>() { "Points", "Rebounds", "Assists", "Steals", "Blocks", "Turnovers", "Fouls" };
+            //comboRank.SelectedIndex=0;
         }
 
         private void Search_Click(object sender, RoutedEventArgs e)

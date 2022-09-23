@@ -70,10 +70,82 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ActionType.cs">
+      <DependentUpon>ado.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Admin.cs">
+      <DependentUpon>ado.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ado.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ado.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Conference.cs">
+      <DependentUpon>ado.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Country.cs">
+      <DependentUpon>ado.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Division.cs">
+      <DependentUpon>ado.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Matchup.cs">
+      <DependentUpon>ado.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MatchupDetail.cs">
+      <DependentUpon>ado.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MatchupLog.cs">
+      <DependentUpon>ado.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MatchupType.cs">
+      <DependentUpon>ado.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Picture.cs">
+      <DependentUpon>ado.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Player.cs">
+      <DependentUpon>ado.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PlayerInTeam.cs">
+      <DependentUpon>ado.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PlayerStatistic.cs">
+      <DependentUpon>ado.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Position.cs">
+      <DependentUpon>ado.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PostSeason.cs">
+      <DependentUpon>ado.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Role.cs">
+      <DependentUpon>ado.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Season.cs">
+      <DependentUpon>ado.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>ado.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Team.cs">
+      <DependentUpon>ado.tt</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="ado.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ado.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ado.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ado.edmx</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -158,29 +230,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Manager.cs" />
-    <Compile Include="Models\AnonimMatchup.cs" />
-    <Compile Include="Models\AnonimPlayer.cs" />
-    <Compile Include="Models\ActionType.cs" />
-    <Compile Include="Models\Admin.cs" />
-    <Compile Include="Models\Conference.cs" />
-    <Compile Include="Models\Country.cs" />
-    <Compile Include="Models\Division.cs" />
-    <Compile Include="Models\Matchup.cs" />
-    <Compile Include="Models\MatchupDetail.cs" />
-    <Compile Include="Models\MatchupLog.cs" />
-    <Compile Include="Models\MatchupType.cs" />
-    <Compile Include="Models\NBAEntities.cs" />
-    <Compile Include="Models\GamePhotos.cs" />
-    <Compile Include="Models\Pictures.cs" />
-    <Compile Include="Models\Player.cs" />
-    <Compile Include="Models\PlayerInTeam.cs" />
-    <Compile Include="Models\PlayerStatistics.cs" />
-    <Compile Include="Models\Position.cs" />
-    <Compile Include="Models\PostSeason.cs" />
-    <Compile Include="Models\Role.cs" />
-    <Compile Include="Models\Season.cs" />
-    <Compile Include="Models\sysdiagrams.cs" />
-    <Compile Include="Models\Team.cs" />
     <Compile Include="Pages\AddMatchup.xaml.cs">
       <DependentUpon>AddMatchup.xaml</DependentUpon>
     </Compile>
@@ -252,6 +301,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="ado.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ado.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ado.edmx.diagram">
+      <DependentUpon>ado.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -331,6 +387,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ado.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ado.edmx</DependentUpon>
+      <LastGenOutput>ado.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ado.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ado.edmx</DependentUpon>
+      <LastGenOutput>ado.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using NBA.Models;
 
 namespace NBA.Pages
 {
@@ -21,12 +20,12 @@ namespace NBA.Pages
     /// </summary>
     public partial class PlayerDetail : Page
     {
-        public PlayerDetail(PlayerStatistics selectedPlayer)
+        public PlayerDetail()
         {
             InitializeComponent();
-            Name.Content = selectedPlayer.Player.Name;
-            ShirtNumber.Content = $" | {selectedPlayer.Player.PlayerInTeam.Select(s => s.ShirtNumber)} | ";
-            Team.Content = $"{selectedPlayer.Player.PlayerInTeam.Select(t=>t.Team.TeamName)}";
+        //    Name.Content = selectedPlayer.Player.Name;
+        //    ShirtNumber.Content = $" | {selectedPlayer.Player.PlayerInTeam.Select(s => s.ShirtNumber)} | ";
+        //    Team.Content = $"{selectedPlayer.Player.PlayerInTeam.Select(t=>t.Team.TeamName)}";
         }
     }
 }
