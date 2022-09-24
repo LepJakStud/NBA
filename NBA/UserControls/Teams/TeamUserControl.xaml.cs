@@ -13,32 +13,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace NBA.Pages
+namespace NBA.UserControls.Teams
 {
     /// <summary>
-    /// Логика взаимодействия для TeamsMain.xaml
+    /// Логика взаимодействия для TeamUserControl.xaml
     /// </summary>
-    public partial class TeamsMain : Page
+    public partial class TeamUserControl : UserControl
     {
-        public TeamsMain()
+        public TeamUserControl()
         {
             InitializeComponent();
-            
         }
-        public void LoadData()
+
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
-            
-        }
-
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            var esternDivision = App.DB.Conferences
-                .FirstOrDefault(x => x.Name == "Eastern");
-
-
-            EasterDivision.ItemsSource = esternDivision.Divisions;
 
         }
-
     }
 }

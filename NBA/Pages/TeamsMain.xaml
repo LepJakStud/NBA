@@ -3,110 +3,38 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:NBA.Pages"
+      xmlns:local="clr-namespace:NBA.Pages" xmlns:teams="clr-namespace:NBA.UserControls.Teams"
       mc:Ignorable="d" 
       d:DesignHeight="560" d:DesignWidth="780"
       Title="TeamsMain" Background="White"
       Loaded="Page_Loaded" ShowsNavigationUI="True">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
-        <Grid Background="#FF6995C2">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-            </Grid.RowDefinitions>
+        <TabControl x:Name="ConferencesTabContol"
+                    Grid.Row="1"
+                    Margin="15"
+                    SelectedIndex="0">
+            <TabItem Header="Eastern"
+                     Width="80">
+                <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                    <ItemsControl x:Name="EasterDivision">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="3" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <teams:DivisionUserControl DataContext="{Binding}" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </TabItem>
 
-            <ListView x:Name="AlphabelFilterListView"
-                      SelectionChanged="AlphabelFilterListView_SelectionChanged"
-                      Margin="5"
-                      Background="#FF6995C2"
-                      Foreground="white"
-                      BorderThickness="0">
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel/>
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-            </ListView>
-            <WrapPanel Grid.Row="1">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Season:"
-                               Foreground="White"
-                               VerticalAlignment="Center"
-                               Margin="5"/>
-                    <ComboBox x:Name="SeasonComboBox"
-                              Width="120"
-                              VerticalAlignment="Center"
-                              Margin="5"
-                              SelectionChanged="SeasonComboBox_SelectionChanged"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Team:"
-                               Foreground="White"
-                               VerticalAlignment="Center"
-                               Margin="5"/>
-                    <ComboBox x:Name="TeamComboBox"
-                              Width="120"
-                              VerticalAlignment="Center"
-                              Margin="5"
-                              SelectionChanged="TeamComboBox_SelectionChanged"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="PlayerName:"
-                               Foreground="White"
-                               VerticalAlignment="Center"
-                               Margin="5"/>
-                    <ComboBox x:Name="PlayerNameTextBox"
-                              Width="120"
-                              VerticalAlignment="Center"
-                              Margin="5"
-                              SelectionChanged="PlayerNameTextBox_SelectionChanged"/>
-                </StackPanel>
-            </WrapPanel>
-        </Grid>
-        <DataGrid x:Name="PlayersDataGrid"
-                  IsReadOnly="True"
-                  AutoGenerateColumns="False"
-                  Grid.Row="1"
-                  Margin="5"
-                  ColumnWidth="auto"
-                  VerticalAlignment="Center">
-            <DataGrid.Columns>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Image Source="{Binding Photo}"
-                                   Height="40"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTextColumn Header="No."
-                                    Binding="{Binding PlayerId}"/>
-                <DataGridTextColumn Header="Name"
-                                    Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Team"
-                                    Binding="{Binding Team.TeamName}"/>
-                <DataGridTextColumn Header="Position"
-                                    Binding="{Binding Position.Abbr}"/>
-                <DataGridTextColumn Header="Weight"
-                                    Binding="{Binding Weight}"/>
-                <DataGridTextColumn Header="Height"
-                                    Binding="{Binding Height}"/>
-                <DataGridTextColumn Header="Experiance"
-                                    Binding="{Binding ExperianceYears}"/>
-                <DataGridTextColumn Header="Country"
-                                    Binding="{Binding Country.CountryName}"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <Grid Grid.Row="2">
-            <TextBlock x:Name="CountsTb"
-                       Text="Total XX records , YY records in one page"
-                       TextAlignment="Center"/>
-        </Grid>
+            <TabItem Header="Western"
+                    Width="80">
+            </TabItem>
+        </TabControl>
     </Grid>
 </Page>

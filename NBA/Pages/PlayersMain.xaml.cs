@@ -75,11 +75,6 @@ namespace NBA.Pages
             LoadData();
         }
 
-        private void PlayerNameTextBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            LoadData();
-        }
-
         private void TeamComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             LoadData();
@@ -90,5 +85,9 @@ namespace NBA.Pages
             LoadData();
         }
 
+        private void PlayerNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            LoadData();
+        }
     }
 }

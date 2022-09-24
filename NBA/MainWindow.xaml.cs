@@ -30,6 +30,18 @@ namespace NBA
         public MainWindow()
         {
             InitializeComponent();
+            var t = App.DB.Teams.ToList();
+            //foreach (var team in App.DB.Teams)
+            //{
+            //    var path = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "Images/Logo", team.LogoPath);
+            //    if (File.Exists(path))
+            //    {
+            //        team.Logo = File.ReadAllBytes(path);
+            //    }
+            //}
+            //App.DB.SaveChanges();
+
+
             Blue.Content = $"The current season is {DateTime.Now.Year - 1}-{DateTime.Now.Year}, and the NBA already has a history {DateTime.Now.Year - 1946} years";
             Blue.Background = Main.color;
             Tools.BorderBrush = Main.color;

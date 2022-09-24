@@ -7,12 +7,12 @@ using NBA;
 
 namespace NBA.Models
 {
-    public  partial class Player
+    public partial class Player
     {
-        //public int ExperianceYears
-        //{
-        //    get { return DateTime.Now.Year - JoinYear.; }
-        //}
+        public int ExperianceYears
+        {
+            get { return 1; }
+        }
 
     }
 }

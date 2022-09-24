@@ -64,7 +64,7 @@
                               Width="120"
                               VerticalAlignment="Center"
                               Margin="5"
-                              SelectionChanged="PlayerNameTextBox_SelectionChanged"/>
+                              TextChanged="PlayerNameTextBox_TextChanged"/>
                 </StackPanel>
             </WrapPanel>
         </Grid>

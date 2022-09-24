@@ -133,6 +133,12 @@
     <Compile Include="Team.cs">
       <DependentUpon>ado.tt</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Teams\DivisionUserControl.xaml.cs">
+      <DependentUpon>DivisionUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Teams\TeamUserControl.xaml.cs">
+      <DependentUpon>TeamUserControl.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -225,6 +231,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\VisitorMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Teams\DivisionUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Teams\TeamUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -342,36 +356,96 @@
     <Resource Include="Images\Pictures\9.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Logo\1.jpg" />
-    <Resource Include="Images\Logo\10.jpg" />
-    <Resource Include="Images\Logo\11.jpg" />
-    <Resource Include="Images\Logo\12.jpg" />
-    <Resource Include="Images\Logo\13.jpg" />
-    <Resource Include="Images\Logo\14.jpg" />
-    <Resource Include="Images\Logo\15.jpg" />
-    <Resource Include="Images\Logo\16.jpg" />
-    <Resource Include="Images\Logo\17.jpg" />
-    <Resource Include="Images\Logo\18.jpg" />
-    <Resource Include="Images\Logo\19.jpg" />
-    <Resource Include="Images\Logo\2.jpg" />
-    <Resource Include="Images\Logo\20.jpg" />
-    <Resource Include="Images\Logo\21.jpg" />
-    <Resource Include="Images\Logo\22.jpg" />
-    <Resource Include="Images\Logo\23.jpg" />
-    <Resource Include="Images\Logo\24.jpg" />
-    <Resource Include="Images\Logo\25.jpg" />
-    <Resource Include="Images\Logo\26.jpg" />
-    <Resource Include="Images\Logo\27.jpg" />
-    <Resource Include="Images\Logo\28.jpg" />
-    <Resource Include="Images\Logo\29.jpg" />
-    <Resource Include="Images\Logo\3.jpg" />
-    <Resource Include="Images\Logo\30.jpg" />
-    <Resource Include="Images\Logo\4.jpg" />
-    <Resource Include="Images\Logo\5.jpg" />
-    <Resource Include="Images\Logo\6.jpg" />
-    <Resource Include="Images\Logo\7.jpg" />
-    <Resource Include="Images\Logo\8.jpg" />
-    <Resource Include="Images\Logo\9.jpg" />
+    <Content Include="Images\Logo\1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Logo\10.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Logo\11.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Logo\12.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Logo\13.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Logo\14.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Logo\15.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Logo\16.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Logo\17.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Logo\18.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Logo\19.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Logo\2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Logo\20.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Logo\21.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Logo\22.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Logo\23.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Logo\24.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Logo\25.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Logo\26.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Logo\27.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Logo\28.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Logo\29.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Logo\3.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Logo\30.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Logo\4.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Logo\5.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Logo\6.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Logo\7.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Logo\8.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Logo\9.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Zone.jpg" />

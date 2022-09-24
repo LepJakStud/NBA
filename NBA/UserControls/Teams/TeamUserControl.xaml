@@ -1,0 +1,81 @@
+﻿<UserControl x:Class="NBA.UserControls.Teams.TeamUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NBA.UserControls.Teams"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <Border BorderThickness="1">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Ellipse Grid.RowSpan="2"
+                     Width="55"
+                     Height="55">
+                <Ellipse.Fill>
+                    <ImageBrush ImageSource="{Binding Logo}" />
+                </Ellipse.Fill>
+            </Ellipse>
+
+            <TextBlock Grid.Column="1"
+                       Margin="10"
+                       FontSize="14"
+                       Foreground="DarkGray"
+                       Text="{Binding TeamName}" />
+
+            <Grid Grid.Row="1"
+                  Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                
+
+                <Button Grid.Column="0"
+                        Margin="10"
+                        HorizontalAlignment="Center"
+                        FontSize="14"
+                        Content="Roster"
+                        BorderThickness="0"
+                        Background="Transparent"
+                        Foreground="Blue" />
+
+                <TextBlock Grid.Column="1"
+                           Margin="10"
+                           HorizontalAlignment="Center"
+                           FontSize="14">
+                    <Hyperlink x:Name="Matchup"
+                               Click="Hyperlink_Click"
+                               Foreground="Blue"
+                               TextDecorations="{x:Null}">
+                        Matchup
+                    </Hyperlink>
+                </TextBlock>
+
+                <TextBlock Grid.Column="2"
+                           Margin="10"
+                           HorizontalAlignment="Center"
+                           FontSize="14">
+                    <Hyperlink x:Name="FirstLineup"
+                               Click="Hyperlink_Click"
+                               Foreground="Blue"
+                               TextDecorations="{x:Null}">
+                        First Lineup
+                    </Hyperlink>
+                </TextBlock>
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>
+
+

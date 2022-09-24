@@ -11,7 +11,14 @@ namespace NBA
 {
     using System;
     using System.Collections.Generic;
-    
+    public partial class Player
+    {
+        public int ExperianceYears
+        {
+            get { return DateTime.Now.Year - JoinYear.Year; }
+        }
+        
+    }
     public partial class Player
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]

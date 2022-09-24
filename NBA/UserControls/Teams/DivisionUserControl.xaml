@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="NBA.UserControls.Teams.DivisionUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NBA.UserControls.Teams"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border Background="#FFEAEAEA"
+                BorderBrush="#FF7F7F7F"
+                BorderThickness="1">
+            <TextBlock VerticalAlignment="Center"
+                       Background="#FFEAEAEA"
+                       Foreground="Gray"
+                       Text="{Binding Name}"
+                       TextAlignment="Center"/>
+        </Border>
+        <ScrollViewer Grid.Row="1"
+                      HorizontalScrollBarVisibility="Disabled"
+                      VerticalScrollBarVisibility="Auto">
+            <ItemsControl AlternationCount="2"
+                          BorderBrush="#FF7F7F7F"
+                          BorderThickness="1,0,1,0"
+                          ItemsSource="{Binding Teams}"
+                          ScrollViewer.IsDeferredScrollingEnabled="True"
+                          VirtualizingPanel.IsVirtualizing="True"
+                          VirtualizingPanel.ScrollUnit="Item">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <local:TeamUserControl/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            
+        </ScrollViewer>
+    </Grid>
+</UserControl>
