@@ -28,7 +28,7 @@ namespace NBA.Pages
                 && TeamComboBox.SelectedItem is Season season)
                 players = players.Where(x => x.PlayerInTeams.Any(y => y.SeasonId == season.SeasonId));
             if (AlphabelFilterListView.SelectedIndex > 0
-                && TeamComboBox.SelectedItem is string startLetter)
+                && AlphabelFilterListView.SelectedItem is string startLetter)
                 players = players.Where(x => x.Name.ToUpper().StartsWith(startLetter.ToUpper()));
             if (!string.IsNullOrWhiteSpace(PlayerNameTextBox.Text)
                 && PlayerNameTextBox.Text.Length > 3)
@@ -50,7 +50,18 @@ namespace NBA.Pages
                 });
                 SeasonComboBox.ItemsSource = seasons;
                 SeasonComboBox.DisplayMemberPath = nameof(Season.Name);
- 
+
+                var teams = App.DB.Teams.ToList();
+                teams.Insert(0, new Team()
+                {
+                    TeamName = "Все"
+                });
+
+                TeamComboBox.ItemsSource = teams;
+                TeamComboBox.DisplayMemberPath = nameof(Team.TeamName);
+
+                LoadData();
+
             }
             catch (Exception ex)
             {

@@ -60,7 +60,7 @@
                                Foreground="White"
                                VerticalAlignment="Center"
                                Margin="5"/>
-                    <ComboBox x:Name="PlayerNameTextBox"
+                    <TextBox x:Name="PlayerNameTextBox"
                               Width="120"
                               VerticalAlignment="Center"
                               Margin="5"
