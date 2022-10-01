@@ -89,5 +89,15 @@ namespace NBA.Pages
         {
             LoadData();
         }
+
+        private void PlayersDataGrid_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if(PlayersDataGrid.SelectedItem is Player player)
+            {
+                var playerDetailPage = new PlayerDetail();
+                playerDetailPage.DataContext = player;
+                Manager.MainFrame.Navigate(playerDetailPage);
+            }
+        }
     }
 }

@@ -20,13 +20,18 @@ namespace NBA.Pages
     /// </summary>
     public partial class PlayerDetail : Page
     {
-        private Player Player;
+        private Player Player = new Player();
+
         public PlayerDetail()
         {
             InitializeComponent();
-        //    Name.Content = selectedPlayer.Player.Name;
-        //    ShirtNumber.Content = $" | {selectedPlayer.Player.PlayerInTeam.Select(s => s.ShirtNumber)} | ";
-        //    Team.Content = $"{selectedPlayer.Player.PlayerInTeam.Select(t=>t.Team.TeamName)}";
+
+            DataContext = App.DB.Players.FirstOrDefault();
+        }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

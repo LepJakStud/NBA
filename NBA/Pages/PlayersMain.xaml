@@ -74,7 +74,8 @@
                   Grid.Row="1"
                   Margin="5"
                   ColumnWidth="auto"
-                  VerticalAlignment="Top">
+                  VerticalAlignment="Top"
+                  MouseDoubleClick="PlayersDataGrid_MouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
