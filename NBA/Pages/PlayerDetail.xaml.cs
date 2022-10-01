@@ -20,6 +20,7 @@ namespace NBA.Pages
     /// </summary>
     public partial class PlayerDetail : Page
     {
+        private Player Player;
         public PlayerDetail()
         {
             InitializeComponent();

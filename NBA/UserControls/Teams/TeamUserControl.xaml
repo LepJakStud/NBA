@@ -39,16 +39,19 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                
 
-                <Button Grid.Column="0"
-                        Margin="10"
-                        HorizontalAlignment="Center"
-                        FontSize="14"
-                        Content="Roster"
-                        BorderThickness="0"
-                        Background="Transparent"
-                        Foreground="Blue" />
+
+                <TextBlock Grid.Column="0"
+                           Margin="10"
+                           HorizontalAlignment="Center"
+                           FontSize="14">
+                    <Hyperlink x:Name="Roster"
+                               Click="Hyperlink_Click"
+                               Foreground="Blue"
+                               TextDecorations="{x:Null}">
+                        Roster
+                    </Hyperlink>
+                </TextBlock>
 
                 <TextBlock Grid.Column="1"
                            Margin="10"

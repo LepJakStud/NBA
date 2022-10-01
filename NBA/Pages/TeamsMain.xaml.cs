@@ -34,9 +34,12 @@ namespace NBA.Pages
         {
             var esternDivision = App.DB.Conferences
                 .FirstOrDefault(x => x.Name == "Eastern");
+            var westernDivision = App.DB.Conferences
+                .FirstOrDefault(x => x.Name == "Western");
 
 
             EasterDivision.ItemsSource = esternDivision.Divisions;
+            WesternDivision.ItemsSource = westernDivision.Divisions;
 
         }
 

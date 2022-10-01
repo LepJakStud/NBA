@@ -6,69 +6,65 @@
       xmlns:local="clr-namespace:NBA.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="PlayerDetail">
+      Title="PlayerDetail"
+      Loaded="Page_Loaded">
 
-    <Grid Background="White" x:Name="GridPlayer">
-
-        <Image x:Name="Image" Height="50" Width="50"/>
-        <StackPanel>
-        <Label x:Name="Name" />
-            <StackPanel Orientation="Horizontal">
-                <Label x:Name="ShirtNumber"/>
-                <Label x:Name="Height"/>
-                <Label x:Name="Team"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <StackPanel >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0" Height="120" Width="100"/>
+            <StackPanel Orientation="Vertical" Grid.Column="1">
+                <TextBlock
+                    Text="{Binding}"
+                    />
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="Born"/>
-                    <Label x:Name="Born"/>
+                    <TextBlock
+                    Text="{Binding , StringFormat=#{C}}"
+                    />
+                    <TextBlock Text="|"/>
+                    <TextBlock
+                    Text="{Binding}"
+                    />
+                    <TextBlock Text="|"/>
+                    <TextBlock
+                    Text="{Binding}"
+                    />
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="College"/>
-                        <Label x:Name="College"/>
-                </StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Vertical" Grid.Column="0">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Born"/>
+                            <TextBlock Text="{Binding}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="College"/>
+                            <TextBlock Text="{Binding}"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Grid.Column="1">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Experience"/>
+                            <TextBlock Text="{Binding}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Salary"/>
+                            <TextBlock Text="{Binding}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
             </StackPanel>
-            <StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Experience"/>
-                        <Label x:Name="Experience"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Salary"/>
-                        <Label x:Name="Salary"/>
-                </StackPanel>
-            </StackPanel>
-        </StackPanel>
-           
-            </StackPanel>
-        <Border BorderBrush="Gray" BorderThickness="1" Height="300" Width="980" VerticalAlignment="Bottom" Margin="15,0,15,30">
-            <StackPanel>
-                <Border Height="150" BorderBrush="Gray" Margin="20,120,20,0" VerticalAlignment="Bottom" BorderThickness="1">
-                    <TabControl>
-                        <TabItem>
-                            <StackPanel Orientation="Horizontal">
-                                <StackPanel Margin="10,20,0,15">
-                                    <Label Content="40" FontSize="12"/>
-                                    <Label Content="30" FontSize="12"/>
-                                    <Label Content="20" FontSize="12"/>
-                                    <Label Content="10" FontSize="12"/>
-                                    <Label Content="0" FontSize="12"/>
-                                </StackPanel>
-                                <StackPanel>
-                                    <Line X1="20" Y1="30" Y2="30" X2="780" Stroke="Gray"  StrokeThickness="1"/>
-                                    <Line X1="20" Y1="23" Y2="23" X2="780" Stroke="Gray" StrokeThickness="1"/>
-                                    <Line X1="20" Y1="23" Y2="23" X2="780" Stroke="Gray" StrokeThickness="1"/>
-                                    <Line X1="20" Y1="23" Y2="23" X2="780" Stroke="Gray" StrokeThickness="1"/>
-                                    <Line X1="20" Y1="23" Y2="23" X2="780" Stroke="Gray" StrokeThickness="1"/>
-                                </StackPanel>
-                                
-                            </StackPanel>
-
-                        </TabItem>
-                    </TabControl>
-                </Border>
-            </StackPanel>
-        </Border>
+        </Grid>
     </Grid>
 </Page>
