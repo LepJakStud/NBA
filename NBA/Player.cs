@@ -11,13 +11,21 @@ namespace NBA
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
+
     public partial class Player
     {
         public int ExperianceYears
-        {
-            get { return DateTime.Now.Year - JoinYear.Year; }
-        }
-        
+            => DateTime.Now.Year - this.JoinYear.Year;
+
+        public double PPG
+            => this.PlayerStatistics.Average(x => x.Point);
+
+        public double PPGLastSeason
+            => this.PlayerStatistics.Where(x =>x.Matchup.Season == Matchups.OrderByDescending(x => x.Starttime).FirstOrDefault()).Average(x => x.Point);
+
+
+
     }
     public partial class Player
     {

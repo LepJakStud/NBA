@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NBA"
         mc:Ignorable="d"
-        Title="NBA MS" Height="560" MinWidth="750" SizeToContent="Width" ResizeMode="NoResize">
+        Title="NBA MS" Height="635.224" MinWidth="750" SizeToContent="Width" ResizeMode="NoResize">
     <Grid Loaded="Grid_Loaded">
         <Border  x:Name="Tools" Height="60" VerticalAlignment="Top" Width="auto" BorderThickness="1" Visibility="Visible" Margin="-1,-13,-1,1">
             <Grid Height="71" VerticalAlignment="Top" Margin="1">

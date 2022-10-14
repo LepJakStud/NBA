@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace NBA.Pages
 {
@@ -21,17 +22,62 @@ namespace NBA.Pages
     public partial class PlayerDetail : Page
     {
         private Player Player = new Player();
+        private string _lastSeasonName;
 
+        public string LastSeasonName
+        {
+            get { return $"{_lastSeasonName} Season"; }
+            set { _lastSeasonName = value; }
+        }
+
+
+        public void InitialChart()
+        {
+            var chartArea = new ChartArea("Main");
+
+            chartArea.AxisX.LabelStyle.Format = $"MM'/'dd";
+            ChartPoints.ChartAreas.Add(chartArea);
+            ChartPoints.Titles.Add(new Title
+            {
+                Text = "Points",
+                Name = "Points",
+                Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F)
+            });
+            ChartPoints.Height = 250;
+            var series = new Series("Points");
+            ChartPoints.Series.Add(series);
+        }
         public PlayerDetail()
         {
             InitializeComponent();
 
-            DataContext = App.DB.Players.FirstOrDefault();
+            Player = App.DB.Players.FirstOrDefault();
+            DataContext = Player;
+            LastSeasonName = App.DB.Matchups.OrderByDescending(x => x.Starttime).FirstOrDefault()?.Season.Name;
+            InitialChart();
+            
+            LoadData();
+        }
+        public void LoadData()
+        {
+            var avgPoints = Player.PlayerStatistics.Average(x => x.Point);
+            AvgOfPointsTextBlock.Text = $"The average of points: {Math.Round(avgPoints,2)}";
+            LastSeason.Text = LastSeasonName;
+
+            var series = ChartPoints.Series.FirstOrDefault();
+            series?.Points.Clear();
+            series.ChartType = SeriesChartType.Line;
+            var data = Player?.PlayerStatistics.OrderBy(x => x.Matchup.Starttime);
+            
+            foreach (var item in data)
+            {
+                series.Points.AddXY(item.Matchup.Starttime, item.Point);
+            }
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
     }
 }
