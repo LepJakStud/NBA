@@ -22,14 +22,23 @@ namespace NBA.Pages
     public partial class PlayerDetail : Page
     {
         private Player Player = new Player();
-        private string _lastSeasonName;
 
-        public string LastSeasonName
+        private Season LastSeason { get;  }
+
+       
+        public PlayerDetail()
         {
-            get { return $"{_lastSeasonName} Season"; }
-            set { _lastSeasonName = value; }
+            InitializeComponent();      
+            LastSeason = App.DB.Matchups.OrderByDescending(x => x.Starttime).FirstOrDefault()?.Season.Name;
+            InitialChart();                       
         }
 
+        public PlayerDetail(Player player) :this()
+        {
+            Player = player;
+            DataContext = Player;
+            LoadData();
+        }
 
         public void InitialChart()
         {
@@ -47,32 +56,25 @@ namespace NBA.Pages
             var series = new Series("Points");
             ChartPoints.Series.Add(series);
         }
-        public PlayerDetail()
-        {
-            InitializeComponent();
 
-            Player = App.DB.Players.FirstOrDefault();
-            DataContext = Player;
-            LastSeasonName = App.DB.Matchups.OrderByDescending(x => x.Starttime).FirstOrDefault()?.Season.Name;
-            InitialChart();
-            
-            LoadData();
+        public void FillChart()
+        {
+            var series = ChartPoints.Series.FirstOrDefault();
+            series?.Points.Clear();
+            series.ChartType = SeriesChartType.Line;
+            var data = Player?.PlayerStatistics.OrderBy(x => x.Matchup.Starttime);
+
+            foreach (var item in data)
+            {
+                series.Points.AddXY(item.Matchup.Starttime, item.Point);
+            }
         }
         public void LoadData()
         {
             var avgPoints = Player.PlayerStatistics.Average(x => x.Point);
             AvgOfPointsTextBlock.Text = $"The average of points: {Math.Round(avgPoints,2)}";
-            LastSeason.Text = LastSeasonName;
-
-            var series = ChartPoints.Series.FirstOrDefault();
-            series?.Points.Clear();
-            series.ChartType = SeriesChartType.Line;
-            var data = Player?.PlayerStatistics.OrderBy(x => x.Matchup.Starttime);
-            
-            foreach (var item in data)
-            {
-                series.Points.AddXY(item.Matchup.Starttime, item.Point);
-            }
+            LastSeasonName.Text = $"{LastSeason.Name} Season";
+            FillChart();
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)

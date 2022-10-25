@@ -94,8 +94,7 @@ namespace NBA.Pages
         {
             if(PlayersDataGrid.SelectedItem is Player player)
             {
-                var playerDetailPage = new PlayerDetail();
-                playerDetailPage.DataContext = player;
+                var playerDetailPage = new PlayerDetail(player);
                 Manager.MainFrame.Navigate(playerDetailPage);
             }
         }

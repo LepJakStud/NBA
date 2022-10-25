@@ -16,14 +16,14 @@ namespace NBA
     public partial class Player
     {
         public int ExperianceYears
-            => DateTime.Now.Year - this.JoinYear.Year;
+             => DateTime.Now.Year - this.JoinYear.Year;
 
         public double PPG
-            => this.PlayerStatistics.Average(x => x.Point);
-
-        public double PPGLastSeason
-            => this.PlayerStatistics.Where(x =>x.Matchup.Season == Matchups.OrderByDescending(x => x.Starttime).FirstOrDefault()).Average(x => x.Point);
-
+            => this.PlayerStatistics.Any() ? this.PlayerStatistics.Average(x => x.Point) : 0;
+        public double RPG
+            => this.PlayerStatistics.Any() ? this.PlayerStatistics.Average(x => x.Rebound) : 0;
+        public double APG
+            => this.PlayerStatistics.Any() ? this.PlayerStatistics.Average(x => x.Assist) : 0;
 
 
     }

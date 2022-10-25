@@ -77,8 +77,8 @@
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
-                        
-                    <TextBlock Name="LastSeason" Text="{Binding Season, StringFormat={}{0} Season}"/>
+
+                    <TextBlock Name="LastSeasonName" Text="{Binding Season, StringFormat={}{0} Season}"/>
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
