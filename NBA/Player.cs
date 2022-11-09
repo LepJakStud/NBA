@@ -15,9 +15,10 @@ namespace NBA
 
     public partial class Player
     {
-        public int ExperianceYears
+        public int Experience
              => DateTime.Now.Year - this.JoinYear.Year;
-
+        public decimal Salary
+            => this.PlayerInTeams.FirstOrDefault()?.Salary ?? 0;
         public double PPG
             => this.PlayerStatistics.Any() ? this.PlayerStatistics.Average(x => x.Point) : 0;
         public double RPG
