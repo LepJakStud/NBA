@@ -22,22 +22,24 @@ namespace NBA.Pages
     public partial class PlayerDetail : Page
     {
         private Player Player = new Player();
+        private Season LastSeason { get; set; }
 
-        private Season LastSeason { get;  }
-
-       
-        public PlayerDetail()
-        {
-            InitializeComponent();      
-            LastSeason = App.DB.Matchups.OrderByDescending(x => x.Starttime).FirstOrDefault()?.Season.Name;
-            InitialChart();                       
-        }
-
-        public PlayerDetail(Player player) :this()
+        public PlayerDetail(Player player) : this()
         {
             Player = player;
-            DataContext = Player;
+            DataContext = player;
+            LastSeason = App.DB.Matchups
+                .OrderByDescending(x => x.Starttime)
+                .FirstOrDefault()?.Season;
+           
             LoadData();
+        }
+
+        public PlayerDetail()
+        {
+            InitializeComponent();            
+            InitialChart();
+            FilterListView.SelectedIndex = 1;
         }
 
         public void InitialChart()
@@ -46,16 +48,78 @@ namespace NBA.Pages
 
             chartArea.AxisX.LabelStyle.Format = $"MM'/'dd";
             ChartPoints.ChartAreas.Add(chartArea);
-            ChartPoints.Titles.Add(new Title
-            {
-                Text = "Points",
-                Name = "Points",
-                Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F)
-            });
+            chartArea.AxisX.Interval = 200;
+            ChangeTitle("");
             ChartPoints.Height = 250;
             var series = new Series("Points");
             ChartPoints.Series.Add(series);
         }
+
+
+        public void LoadData()
+        {
+            AvgOfPointsTextBlock.Text = $"The average of points: {Math.Round(Player.PPG, 2)}";
+            LastSeasonName.Text = $"{LastSeason.Name} Season";
+
+            var data = Player?.PlayerStatistics.OrderBy(x => x.Matchup.Starttime);
+            var resultList = data.Select(x => new Tuple<int, DateTime>(x.Point, x.Matchup.Starttime)).ToList();
+            FillChart(resultList);
+        }
+
+        public void FillChart(IEnumerable<Tuple<int, DateTime>> points)
+        {
+            var series = ChartPoints.Series.FirstOrDefault();
+            series?.Points.Clear();
+            series.ChartType = SeriesChartType.Line;
+
+            foreach (var point in points)
+            {
+                series.Points.AddXY(point.Item2, point.Item1);
+            }
+        }
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            var points = SelectPointsData(Player.PlayerStatistics).ToList();
+            FillChart(points);
+
+        }
+        public IEnumerable<Tuple<int, DateTime>> SelectPointsData(IEnumerable<PlayerStatistic> statsList)
+        {
+            var fromDate = FromDatePicker?.SelectedDate;
+            var toDate = ToDatePicker?.SelectedDate;
+            if (fromDate != null)
+                statsList = statsList
+                    .Where(x => x.Matchup.Starttime >= fromDate);
+            if (toDate != null)
+                statsList = statsList
+                    .Where(x => x.Matchup.Starttime <= toDate);
+
+            statsList = statsList.OrderBy(x => x.Matchup.Starttime);
+            var selectItem = FilterListView.SelectedItem.ToString();
+            ChangeTitle(selectItem);
+            switch (selectItem)
+            {
+                case "POINTS":
+                    return statsList
+                        .Select(x => new Tuple<int, DateTime>(x.Point, x.Matchup.Starttime));
+                case "REBOUND":
+                    return statsList
+                        .Select(x => new Tuple<int, DateTime>(x.Rebound, x.Matchup.Starttime));
+                case "ASSISTS":
+                    return statsList
+                        .Select(x => new Tuple<int, DateTime>(x.Assist, x.Matchup.Starttime));
+                case "STEALS":
+                    return statsList
+                        .Select(x => new Tuple<int, DateTime>(x.Steal, x.Matchup.Starttime));
+                case "BLOCKS":
+                    return statsList
+                        .Select(x => new Tuple<int, DateTime>(x.Block, x.Matchup.Starttime));
+                default:
+                    return statsList
+                        .Select(x => new Tuple<int, DateTime>(x.Point, x.Matchup.Starttime));
+            }
+        }
+
 
         public void FillChart()
         {
@@ -69,17 +133,22 @@ namespace NBA.Pages
                 series.Points.AddXY(item.Matchup.Starttime, item.Point);
             }
         }
-        public void LoadData()
-        {
-            var avgPoints = Player.PlayerStatistics.Average(x => x.Point);
-            AvgOfPointsTextBlock.Text = $"The average of points: {Math.Round(avgPoints,2)}";
-            LastSeasonName.Text = $"{LastSeason.Name} Season";
-            FillChart();
-        }
 
-        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        private void FilterListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+            var points = SelectPointsData(Player.PlayerStatistics).ToList();
+            FillChart(points);
+        }
+        public void ChangeTitle(string title)
+        {
+            if (string.IsNullOrEmpty(title))
+                title = "POINTS";
+            ChartPoints.Titles.Clear();
+            ChartPoints.Titles.Add(new Title
+            {
+                Text = title,
+                Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F)
+            });
         }
     }
 }
